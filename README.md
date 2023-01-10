@@ -96,7 +96,8 @@ Information about how to use the APM can be found in:
   - [Training - Add a new Equipment to the Catalogue](training/06-Add-a-new-Equipment-to-the-Catalogue.pdf)  
   - [Training - Add a new Workstation to the Catalogue](training/07-Add-a-new-Workstation-to-the-Catalogue.pdf)  
   - [Training - Add a new Production Line to the Catalogue](training/08-Add-a-new-Production-Line-to-the-Catalogue.pdf)  
-  - [Training - Integration with OPIL (Open Platform for Innovations in Logistics)](training/09-Integration-with-OPIL.pdf)  
+  - [Training - Integration with OPIL, part 1 (Open Platform for Innovations in Logistics)](training/09-Integration-with-OPIL-part-1.pdf)  
+  - [Training - Integration with OPIL, part 2 (Open Platform for Innovations in Logistics)](training/10-Integration-with-OPIL-part-2.pdf)  
   
 Some brief instructions:  
 1. In order to access the APM, you need a browser. Google Chrome and Mozila Firefox are recommended, but you can use other browsers.  
