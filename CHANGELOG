@@ -1,0 +1,1378 @@
+Release: 4.12.0
+  -Concluded the integration with OPIL (BetterFactory project)
+    --updated all msgbroker.json files and:
+      ---added nameIsPattern to IdNameType
+      ---added entityIdIsPattern to OrionSubscription
+    --added zip with all the files to install opil on a docker environment
+    --created new topics: TOPIC_NAME_OPIL_ROBOT & TOPIC_NAME_OPIL_MAP
+    --Changed RobotService.processMsgHeartBeep, surpressed special chars on the embedded json bounding volume (this happens with ORION) 
+  -Added @SuppressWarnings("unused") to code not being used
+    
+
+Release: 4.11.11
+  -set sbt.version                      1.7.2    to 1.8.0
+  -upgraded sbt-plugin (play framework) 2.8.18   to 2.9.0-M2
+  -upgraded sbt-assembly                0.14.9   to 2.1.0
+  -upgraded org.slf4j                   1.7.36   to 2.0.6
+  -upgraded ch.qos.logback              1.2.11   to 1.4.5
+  -upgraded jacksonVersion              2.13.4   to 2.14.1
+  -upgraded jacksonDatabindVersion      2.13.4.2 to 2.14.1
+
+Release: 4.11.10
+  -Updated 3rd party libs:
+    -- io.opentelemetry       0.14.1 to 1.21.0
+    -- com.github.scribejava  8.1.0  to 8.3.3
+    -- springframework        5.3.23 5.3.24
+    -- spring-data-mongodb    3.4.5  3.4.6
+    -- spring-kafka           2.9.2  2.9.3
+    -- mongodb-driver         4.7.2  4.8.1
+    -- commons-compress       1.21   1.22
+    -- websocket-client       9.4.49.v20220914 9.4.50.v20221201
+    -- jackson                2.13.3 2.13.4
+    -- jacksonDatabindVersion 2.13.3 2.13.4.2
+  -Upgraded mongodb on all docker installations: from 5.0.9 to 5.0.14
+  -Upgraded mongodb on all docker installations: from 5.0.14 to 6.0.3
+  -Upgraded haproxy on all docker installations: from 2.6.6 to 2.6.7
+
+Release: 4.11.9
+  -Added two new buttons to the Task List screen, so that human operators can inform the system that a task is started and concluded
+  -Updated 3rd party libs:
+     -- play         2.8.17 to 2.8.18
+     -- scalaVersion 2.13.9 to 2.13.10
+     -- spring-kafka 2.9.1  to 2.9.2
+     -- npm          8.5.0  to 8.19.3
+   -Updadated the sbt appliction to 1.8.0 but couldn´t updgrade the project to 1.7.3 or 1.8.0 
+   -Updated package.json according to the current versions identified by 'npm list' & 'npm outtdated'
+
+Release: 4.11.8
+  -upgraded third party libs:
+    -org.springframework 5.3.22 to 5.3.23
+    -spring-data-mongodb  3.4.2 to 3.4.5
+    -spring-kafka         2.9.0 to 2.9.1
+    -mongodb-driver       4.7.1 to 4.7.2
+    -junit-jupiter        5.9.0 to 5.9.1
+    -websocket-client     9.4.48.v20220622 to 9.4.49.v20220914
+  -upgraded sbt           1.7.1 to 1.7.2
+  -upgraded playframework 2.8.16 to 2.8.17
+  -scala                  2.13.8 to 2.13.9 
+  -Created the OSPS message to request a new ProductionSchedule from the MES
+    -- created the entry OSPS-APM-ProductionScheduleReq on all msgbroker*.json
+    -- added the topic to java code
+    -- created route and controller for asking MES to generate a new Production Schedule
+    -- created test for new functionality
+    -- created the button on the user interface
+  -updated the property files for the tests, the section 'general UI properties' was missing
+  -Moved all tests initialization regarding the setup of msg broker to MsgBrokerToUseOnTests
+
+
+Release: 4.11.7
+  -added port 9000 to the apm-iilab distribution so that the APM is accessible on 8443 and 9000
+  -changed PhysicalObjectService, EquipmentService & WorkStationService:
+    --method updateObjectBoundingVolume, so that the bouding volume is updated but not the CadModelonFile
+  -Updated third party jars:
+    spring-kafka         2.8.8 to 2.9.0
+
+Release: 4.11.6
+  -Updated third party jars:
+    org.springframework  5.3.21 to 5.3.22
+    spring-data-mongodb  3.4.1  to 3.4.2
+    spring-kafka         2.8.7  to 2.8.8 
+    mongodb-driver-core  4.6.1  to 4.7.1
+    mongodb-driver-sync  idem
+    avro                 1.11.0 to 1.11.1
+    junit-jupiter        5.8.2  to 5.9.0
+    websocket-client     9.4.46.v20220331 to 9.4.48.v20220622
+    
+Release: 4.11.5
+  -updated SBT from 1.6.2 to 1.7.1 and started to use JDK 18 on the dev environment
+
+Release: 4.11.4
+  -updated typescript ('npm install -g typescript') from 4.5.2 to 4.7.4
+  -updated 3rd-party libs:
+      sbt-plugin          from 2.8.15   to 2.8.16
+      org.springframework from 5.3.19   to 5.3.21
+      spring-data-mongodb from 3.3.4    to 3.4.1
+      spring-kafka        from 2.8.5    to 2.8.7
+      mongodb-driver-core from 4.6.0    to 4.6.1
+      jackson             from 2.13.2   to 2.13.3
+      jacksonDatabind     from 2.13.2.2 to 2.13.3
+
+Release: 4.11.3
+  -replaced www.ramp.eu by beta.ramp.eu ; resolved bug (AccessTokenEndpoint and AuthorizationBaseUrl were hardcoded)
+  -ui: resolved bug on the integration with opil server (lack of url prefix, tenant )
+
+Release: 4.11.2
+  -LoginController: added functionality to use on RAMP distribution so that we specify in properties like
+   'apm.tenant.xpto.ramp.authorization.companies' each tenant and the companies that are authorized to login
+  -LoginController.processOauth2RampCallback: replaced redirect by unauthorized with a message printed on the html browser when the accepted login by RAMP is not accepted by the APM because the organization is not known
+  -Improved the 2D views on the 3D visualisation of single objects (Top; Left; Front;...)
+  -Added an additional confirmation before allowing one to delete object types from the catalog 
+    (conveyors; final products; kits; large boxes; parts; production lines; racks; robots; small boxes; workstation)
+  -Added loading screen on several parts of the user interface
+  
+Release: 4.11.0
+  -Upgrade play framework from 2.8.13 to 2.8.15. 
+   This is the first release targeting java 17. 
+   Recommendation is to upgrade jackson libs to latest version (2.13.2)
+  -Upgraded the following 3rd-party libs:
+      org.springframework            5.3.19
+      spring-kafka                   2.8.5
+      spring-data-mongodb            3.3.4
+      mongodb-driver*                4.6.0
+      avro                           1.11.0
+      websocket-client               9.4.46.v20220331
+      guice & guice-assistedinject   5.1.0
+      jackson                        2.13.2
+   -Upgraded mongo image on all distributions (from 5.0.6 to 5.0.7)
+   -On uploading the physical area map, only .png image files are supported
+   -Corrected fault on the back-end: 'names with blanks' in a physical area was causing a wrong access to the correspondent map
+   -Corrected fault on the front-end: on the creation of new workstation types (data format)
+   -Corrected fault on the front-end: on the creation of new rack types (unique ids for cells)
+   -Corrected fault on the front-end: on the creation of new largebox types (unique ids for cells)
+   -Create new training material for demonstrating the interation with OPIL.
+   -updated initial data of RAMP distribution: 'Cell 1.x' on racks and largeboxes
+   -PhysicalObject: updated so that cell identifications on Racks/Largeboxes are consistent with the correspondent types: 'Cell 1.1', 'Cell 1.2'...
+
+Release: 4.10.4
+  -Moved member ProductionOrder.airegioResources to PhysicalAreaProdSchedule, so that all information regarding the
+   execution of all orders in the production schedule (regarding airegio resources) are kept under the production schedule object
+
+Release: 4.10.3
+  -Patch on DataPopulatorSpringImpl.init(), obotTypeService.existsObject(r.objectTypeId)
+  -Implemented new functionality in the Set Objects UI: generation of layout files for OPIL (BetterFactory).
+   During creation of a Physical Area the YML file for OPIL is also created. 
+   The other two files (annotations.ini and bitmap image) are created on demand. The bitmap image is created by picking the original bitmap image and creating a black zone 
+   for each implanted physical object. 
+   In the UI, a set screen was developed (setupRegions) but we didn't complete this feature.
+  -jdk version is now 17
+  -Updated springframework to 5.3.18, spring-data-mongodb to 3.3.3, spring-kafka to 2.8.4, logback to 1.2.11
+  -Changed the docker distribution of ramp: replaced docker volumes by local bind volumes (as already done in the remaining distributions)
+  -The mouse cursor in the 2D editor menu was changed by adding the attribute "href" to all HTML "a" tags.
+  -Added TenantHolder to MsbEventsHandler (confirmed that a new Thread is used to process a new message coming from Kafka) and RosSubscribedTopics. 
+   No tests were made for ROS, ORION and MSB.
+   For specifying the tenant we used the name 'facilityId'.
+  -DataPopulatorSpringImpl.createCheckDataFolders: we are now checking read/write access to all data descendant folders
+
+Release: 4.10.1
+  -Created distribution for BetterFactory, to be available on the RAMP GitHub repo
+  -Updated the documentation available on the deploy folder
+  -Corrected bad behaviour of the front end: updated of the production schedule were being requested to the back end even though 
+    there was no instance of the production schedule 
+  -Deleted the distributions rennes2 and rennes3
+
+Release: 4.10.0
+  -Updated sbt from 1.6.1 to 1.6.2
+  -Updated npm from 8.1.2 to 8.5.0
+  -Updated org.slf4j from 1.7.33 to 1.7.36
+  -Updated websocket-client from 9.4.44.v20210927 to 9.4.45.v20220203
+  -Started the integrating the AIREGIO Reinforcement Learning Module 
+   (main changes done on the OrderManagerService, affected ProductionOrder, ManufacturingTask, ManufacturingTaskStatus, 
+    SOP, PhysicalAreaProdScheduleService, ScheduleControlerActor, JsonConverterService)
+  -Changed MyMessageListener.convertByteArrayToString: if first byte is AVRO magic number, use the deserializer of Avro, else convert the bytes to string using UTF-8
+  -Removed property apm.kafka.message.listener.removefirstfivebytes
+  -Created new property apm.TopicsLoggerService.disable.trace.in-heart-beep
+  -Updated spring-data-mongodb from 3.2.8 to 3.3.1, had to change the initial-data files on some definitions, to make sure that the "id" fields mentioned on each
+   hierarchical object are unique. Somehow, until spring-data-mongodb 3.2.8 version this was not causing any problem. Didn't change initial-data for rennes2 and rennes3.
+  -Updated spring-data-mongodb from 3.3.1 to 3.3.2
+  -Updated springframework from 5.3.15 to 5.3.16
+  -Updated mongo docker image from 5.0.5 to 5.0.6 on all distributions
+  -Updated spring-kafka from 2.8.2 to 2.8.3
+
+Release: 4.9.2
+  -Updated sbt-plugin from 2.8.11 to 2.8.13
+  -Updated spring-data-mongodb from 3.2.7 to 3.2.8
+  -Updated spring-kafka from 2.8.1 to 2.8.2
+
+Release: 4.9.1
+  -ObjectTypeController.updateCadModelOnFile: implemented the special case of a production line, the front-end invokes this method several times, one for each workstation in the production line, when updating the cad model.
+  -Updated spring framework from 6.3.14 to 5.3.15
+  -Updated org.slf4j from 1.7.32 to 1.7.33
+  -Resolved the bug on the update of cad model on production line type
+  -Protected several potential access to null pointers (according to SpotBugs recommendation)
+  -Added 'implements Cloneable' to classes implementing clone (according to SpotBugs recommendation)
+  -Revised the implementation of equals() and hashCode() on the data model objects, according to 
+     https://www.sitepoint.com/implement-javas-equals-method-correctly/ (according to SpotBugs recommendation)
+  -Followed other recommendations from SpotBugs
+
+Release: 4.9.0
+  -Changed the server so that only one instance of the APM is used on the RAMP docker-based environment. 
+    A single instance of the server is used to support several entities. 
+    User must use urls on the form https://..../xxx where xxx is the identity of the entity the User is related to.
+    The reverse-proxy extracts this identifier from the URL and inserts in a HTTP header.
+    The server uses this to set the apropriate context for the entity. Diferent entities have different databases and 'data' folders.
+
+Release: 4.8.2
+  -Changed the frontend in order to be able to have several APM instances in a docker distribution accessible on the same port by using an URL prefix in all the interactions with the back-end server.
+  This was done for the RAMP distribution.
+  -Added X_FORWARDED_PROTO to the LoginController
+  -Updated logback to 1.2.10 and kafka 2.8.1
+  -Updated sbt from 1.5.6 to 1.6.1 (sbt, sbt plugins, and build definitions use Scala 2.12.15)
+
+Release: 4.8.1
+  -Changed the ramp distribution: 
+    disabled the self-signed certificate, the certificate of vcese09.inesctec.pt is now the real one
+    disabled the jaeger system  
+    changed ramp distribution: ssl is now processed by the reverse proxy, access to the APM instances is now regular HTTP
+  -Updated springframework(5.3.14) logback(1.2.8) junit-jupiter(5.8.2)
+  -Updated the health parameters on docker-compose-yml files: increased interval to 120s, start_period to 60s, updated mongodb version
+  -Defined the correct mongodb-driver for the actual spring-mongo version
+  -Added some dependencies on build.sbt to force the usage of same versions between our real dependencies and the ones from 3-party libs: 
+   slf4j-ext jul-to-slf4j jackson-dataformat-yaml
+  -Moved the public/conf/* files to conf folder, this allows now to generate each specific distribution without copying files manually. 
+   Existing files now have the names: ui-default.properties and ui-ramp.properties
+  -Developed controller to process requests of ui-default.properties from the user interface
+
+Release: 4.8.0
+  -Corrected implementation of WorldModelController.processGraphElement, bugs corrected
+  -created WorkStation.createPhysicalObject
+  -created Equipment.createPhysicalObject
+  -upgraded Play plugin from 2.8.8 to 2.8.11
+  -upgraded scalaVersion from 2.13.6 to 2.13.7
+  -upgraded sbt from 1.3.13 to 1.5.5
+
+Release: 4.7.4
+  -Added Largebox, smallbox, kit, conveyor, equipment and workstation to WorldModelController.processGraphElement
+  
+Release: 4.7.3
+  -Upgraded third-party software:
+    springframework 5.3.10 -> 5.3.13
+    spring-data-mongodb 3.2.5 -> 3.2.7
+    mongodb-driver-core 4.3.2 -> 4.3.4
+    spring-kafka 2.7.7 -> 2.8.0
+    ch.qos.logback 1.2.6 -> 1.2.7
+    websocket-client 9.4.43.v20210629 -> 9.4.44.v20210927
+
+Release: 4.7.2
+  -Added new feature: implantation of robots on the 2D editor
+
+Release: 4.7.1
+  -Created a keep alive link to be used by reverse proxies: http://.../is-alive
+  -Created new feature on the UI to allow the creation/update of Racks
+  -Developed the API to allow the creation of segments of the world model (for AI REGIO), this implementation covers Racks
+  -Updated the User Manual (took the deliverable D1.2 from BetterFactory)
+
+Release: 4.7.0
+  -Docker distribution - Replaced 16-jdk-focal by 17-jdk-focal
+
+Release: 4.6.15
+  -Prepared the APM to be deployed on the RAMP Platform
+
+Release: 4.6.14
+  -Docker distribution - Replaced adoptopenjdk:16-jdk-hotspot-focal by eclipse-temurin:16-jdk-focal
+   Docker image is officially deprecated in favor of the eclipse-temurin image.
+  -Updated docker distributions: ensured that the conf/app.properties is removed when launching the apm and configuring it (this wasn't happening in the apm-iilab-ros-stack dist)
+   
+Release: 4.6.13
+  -updated again third party libs: org.springframework, mongodb-driver-core, ch.qos.logback, junit-jupiter
+  -updated third party libs, springframework to 5.3.9, spring-data-mongodb
+  -updated the training files to RAMP
+  -created new property: apm.kafka.message.listener.removefirstfivebytes=yes
+  -added haProxy (proxy resolver) on RAMP distribution
+
+Release: 4.6.12
+  -updated mongodb version, from 4.4.6 to 5.0.2 (docker containers)
+  -updated third party libs, 
+   springframework to 5.3.9, 
+   spring-data-mongodb to 3.2.4, 
+   spring-kafka to 2.7.6, 
+   mongodb-driver-core to 4.3.1, 
+   org.slf4j to 1.7.32, 
+   ch.qos.logback to 1.2.5, 
+   websocket-client to 9.4.43.v20210629,
+   commons-compress to 1.21,
+   commons-geometry-parent to 1.0,
+   commons-io to 2.11.0
+ 
+Release: 4.6.11
+  -Added new data for iilab distribution to support produtech demo
+  
+Release: 4.6.10
+  -3D visualization - removed flickering from robot name
+  -3D visualization: freeing up memory on exit
+  -2D Editor - replaced THREE.FileLoader by the default iamge loader
+  -replaced THREE.FileLoader by the default image loader
+  -server: replaced the XML configuration of mongodb (application-context.xml) by java @Configuration method via class MongoDbConfig
+   (which is the recommended method of initializing mongodb). Aim was to keep the application-context.xml to the minimum required statements.
+   Issue not resolved: coudn't remove <mongo:auditing> from the context file.
+  -updated third-party libs: spring framework, spring kafka, websocket, common-io, slf4j
+   spring mongo wasn't updated (raised some errors)
+  -updated mongodb version, from 4.4.4 to 4.4.6 (docker containers)
+  
+Release: 4.6.9
+  -3D visualization, resolved interference between camera controls and dat.gui;
+  -3D visualization, disabled raycaster except on visualization of parts
+  -user interface: updated translation to portuguese
+
+Release: 4.6.8
+  -Updated play framwork: from 2.8.7 to 2.8.8
+  -Updated third party libs: springframework, spring-data-mongodb, spring-kafka, junit-jupiter, websocket-client, guice, com.fasterxml.jackson.core
+  -Updated scalaVersion 2.13.5 to 2.13.6
+  -Developed an elaborated image for representing the Tool and updated training material
+  -Created new route to handle requests from TaskManager to update world model: POST   /worldmodel_graph_element
+
+Release: 4.6.7
+  -Resolved bug: activated the visualization of Parts on the 3d World Model
+  -Resolved errors related with 3D visualization through three.js (visualization of robot names)
+  -Changed the java virtual machine on docker distributions (from 15-jdk-openj9-focal to 16-jdk-hotspot-focal)
+     
+Release: 4.6.6
+  -On docker distributions, replaced 15-jdk-openj9-focal by 16-jdk-hotspot-focal
+  -Updated three party libs: threejs(0.114.0 to 0.126.1)
+  -Updated scalaversion on build.sbt
+  -Added missing css classes (front-end)
+  -Upgraded typescript to 4.2.3, command is 'npm install -g typescript'
+  -Resolved bug on ManufacturingTaskTypeService: we accept that task definition do not have a sop, 
+   only the objectId, so that when importing a production schedule, each Task specifies a manufacturingTaskDef 
+   with id and name and we accept that manufacturing tasks only have an objectId without SOP (caused by UFBA use case).
+  -Created new property "apm.msg.config.msgbroker.json_file_name" on the app properties file to hold the name of the msgbroker.json file
+  -Reworked the interface with ORION Broker. Managed to do it but it's not complete.
+   Problems:
+     -when the HeartBeep is generated by the robot (ROS), the APM receives the notification. However the boudingVolume field is not valid JSON.
+     -when the APM generates a HeartBeepReq, it doesn't always receive the HeartBeepResp (but it receives from time to time). We noticed that FIROS created several subscriptions for the entity .OSPS.APM.HeartBeepReq
+  
+Release: 4.6.5
+  -Concluded the import of URDF models object types.
+  -Replaced guice (4.2.3) by 5.0.1, started to use JDK 16 on the local development environment.
+  -Updated third-party libs (springframework, spring-data-mongodb, spring-kafka, websocket-client).
+
+Release: 4.6.4
+  -Removed property "apm.application.id=APM" from app.properties
+  -Improved RAMP frontend
+  
+Release: 4.6.3
+  -Added css file to ramp distribution. It is now possible to have different frontends.
+
+Release: 4.6.2
+  -Improved user interface.
+
+Release: 4.6.1
+  -Added transparent volumes to the 2D editor.
+  -Disabled the "Remove Production Shedule" for iilab distribution.
+  -Updated mongodb to 4.4.4.
+  -Updated the configuration mechanism for the front-end (all major menu options can be enabled/disabled this way).
+  -Removed data from RAMP distribution.
+  -Added camera views 3D visualization (Top, front, back, left, right and bottom) on the 3D visualizer present on the Catalogue.
+
+Release: 4.6.0
+  -Added the Etag mechanism to have a smart way of updating the static assets (files within the public folder) on the user interface.
+   These assets are retrieved when there is a new version, in the usual case where the front-end makes access, a 304 HTTP response is returned.
+  -Changed naming of properties: all properties now start by 'apm.', this affects files app-default.properties and app.propoerties
+  -Reimplemented the login process in order to start using JWT Token embedded on cookies created by the server and sent to the frontend.
+  -We don't accept anymore usernames without password.
+  -Improved the training material.
+  
+Release: 4.5.0
+  -Added OAuth2 implementation for authentication througth Github and RAMP
+  -Corrected errors in initial data about part type cad files.
+  -Protected the two routes that were open (user image, organization image).
+  -Protected the route that was open (map).
+  
+Release: 4.4.7
+  -Added the @Security.Authenticated to the PartTypeController.getDataFile method
+  -Added "max-age=86400" to static HTML resources (on application.conf file)
+  
+Release: 4.4.6
+  -Resolved bug introduced by 4.4.5 (GenericController) 
+  -Added missing authentication action to controllers (responsible for upload the cad model for an object type)
+
+Release: 4.4.5
+  -Resolved bug: visualization of the CAD model associated with a Part (due to the new structure on the data model)
+  -Resolved bug: selecting a jpg image for creating a physical area wasn't working as we were always creating a file with extension .png.
+  -Updated docker distributions: re-implemented the script to create the docker volumes, now in the right way.
+  -When importing a new production plan (for AssemblyLine or Warehouse), if there is a actual production plan, 
+   the new production orders are added to the existing production plan. The existing production plan is not deleted. 
+  -Added message error to UI on every POST/PUT/DELETE HTTP request that is made to the server.
+  -Ensured that all Controllers required authentication.
+  -Update the html meta tags.
+  -For unknown HTTP requests, telemetry mechanism was generated too much noise in the log, as the controller 
+   and method arguments are null. This happened in the ramp instances as the web site was attacked by many HTTP requests.
+  -Added "Access-Control-Max-Age", "86400" to the APM server response (one day of cache).
+
+Release: 4.4.4
+  -Updated jdk to 15
+  -Updated the training files
+  -Resolved bug: deleting the last physical area causes the system to stay in an inconsistent state, removal of the last physical area now causes the creation of the default physical area
+  -Added training material
+  -Resolved bug on convertion of step files when name of file has blank spaces, in case the step is not converted, the correspondent object, e.g. rack, is
+deleted.
+  -Added error message: "Upload CAD model Failed" for all types of objects from the catalog
+  -Added notification: "Loading CAD model" for all types of objects from the catalog
+  -Added notification: "Loading CAD model"
+  -Started implementing oauth2
+  -Created new object type: EquipmentType
+  -Updated scalaVersion to 2.13.4
+  -Added feature to DataPopulator: data folders holding things not related to object types (PhysicalObjectType, FinalProductType, ...) are removed at start up.
+   The feature in activated by a property in the app.properties file.
+  -Added control screen to the 3D visualization of object types to let the User translate and rotate the object
+
+Release: 4.4.3
+  -Added freecad to the docker distribution
+  -Changed jdk to the 14 version
+  -Docker distribution - Replaced the openjdk:14 by adoptopenjdk:14-jdk-openj9-focal, the image is now based on ubuntu focal distribution (20.04 LTS)
+    
+Release: 4.4.2
+  -Started introducing changes in the software in order to support the STEP model
+  -Linux installations require the installation of freecad: sudo apt-get install freecad
+  -When running the APM on windows, we have to install python (3.6.8, python.org, select option "Set Path") and freecad (freecadweb.org)
+  -Resolved shutdown sequence, msgBrokerActors were not being stopped during application shutdown
+  -Added the possiblity to have a CAD model (step file, stl file, urdf file aggregating stl files) on each Object Type (conveyor, finalproduct, kit, largebox, part, productionline, rack, robot, smallbox, workstation)
+  -Correspondingly, object instances have a property specifying the cad model of teh corresponding type.
+  -Updated third-party libs: org.springframework, spring-data-mongodb, org.eclipse.jetty.websocket, org.springframework.kafka  
+
+Release: 4.3.14
+  -Activate TopicsLoggerService on ROS communications
+  -resolved bug on TopicsLoggerService (messages not added to the log the way we wanted: more data that planned)
+  -Adjusted visualization of grasping poses or Parts
+  -Changed the structure of grasping poses
+
+Release: 4.3.13
+  -Added two new fields to SkillStatus: feedback, result. this is related with ROS message
+  -Added refresh of screen when creating a new physical area.
+  -Upgraded SBT to 1.3.13
+  -Changed the format of grasping poses (new fields: method.types, gripper.DOFs, data renamed to parameters).
+  -Updated the grasping poses of all Embraer parts
+  -Re-implemented the 3D visualization fo grasping poses
+  -Re-implemented, in the correct way, the serialization/deserialization of kafka messages (coming from MqttSOurceConnector and going to MqttSinkConnector)
+  -Started to use openjdk 14.0.2
+  -Removed Drive_Warehouse from embraer production schedule
+  -Updated 3rd-party libs: spring-kafka to 2.5.3.RELEASE, apache avro to 1.9.2
+  -Updated TopicsLogger
+
+Release: 4.3.9
+  -updated several third-party elements:
+    --started using sbt-1.3.12 (after installing sbt, remove the folder "...\sbt\lib\local-preloaded", advised also to remove the ~/.sbt folder. See issue: https://github.com/sbt/sbt/issues/5587
+    --updated play framework to 2.8.2
+    --updated scalaVersion to 2.13.2
+    --updated springframework" to 5.2.7.RELEASE
+    --updated spring-data-mongodb to 2.2.8.RELEASE
+    --updated websocket-client to 9.4.30.v20200611
+    --updated com.fasterxml.jackson.core to 2.10.4
+    --updated spring-kafka to 2.4.7.RELEASE
+    --updated jquery to 3.5.1
+  -added the creation of a physical area by supplying the map image
+  -resolved bug on user controller (update of image from the controller)
+  -simplified the import of custom orders (tested on Embraer use case) so that ManufacturingTasks:
+    -- have an id like "Drive_Rack1" and not like "Drive_Rack1 / bracket"
+    -- have an id like "PickAndPlace_reinforced_bracket" and not like "PickAndPlace_reinforced_bracket / reinforced_bracket"
+    -- etc.
+    
+Release: 4.3.8
+  -bug: when using ROS, during the processing of TaskStatus/ExecuteTaskResp messages sent by TM, sending of notifications to MES fails when there is not a default ROS Bridge. THis situation is ignored and we just log the error.
+
+Release: 4.3.7
+  -added protection for the cases where data within msg-broker.json is inconsistent with the msg brokers activated in app.properties. 
+
+Release: 4.3.6
+  -updated iilab-ros-stack distribution
+  -changed initial-data files in order to have the same set of parts from Simoldes and Embraer 
+
+Release: 4.3.5
+  -created new status on TaskStatus: 0 - TM started executing Task
+  -updated data for psa-metz distribution
+
+Release: 4.3.4
+  -updated models for Scalable use case (PSA)
+  -added property to the creation of robots: 3dModel.urdfFileName containing the name of the URDF file that constitutes the 3d model of the robot
+  -changed visualization of Robots: if the robot has a 3D Model we don't show the bounding volume at the root of the hierarchy
+  
+Release: 4.3.3
+  -Added fields to Skill: goals, results, feedback, outcomes
+
+Release: 4.3.2
+  -Created distribution for betterfactory
+
+Release: 4.3.1
+  -Created property on app properties files to let one specify the name and type of the default physical area created by the system
+  -Updated 4-party libs: org.springframework to 5.2.6.RELEASE, spring-data-mongodb to 2.2.7.RELEASE, junit-jupiter to 5.6.2, spring-kafka to 2.4.6.RELEASE
+  -Discovery of robots: in case the broker is ROS and there is no default ROS Bridge, the message is sent to all the existing ROS Bridges.
+  -Created distribution to ros-stack area, in order to feed the ros-stack-docker project
+  
+Release: 4.3.0     
+  -Changed the way RosBridges are specified in the app*.properties file:
+    -we no longer required a default ROS Bridge
+    -in the case where we have more than one robot, one should define a specific RosBridge for each robot:
+      rosbridge.xpto.activate=yes
+      rosbridge.xpto.uri=ws://127.0.0.1:9090
+      rosbridge.xpto.waitForServiceResponseMessageTimeout=30000
+    where xpto is the id of the robot
+    -in previous versions this was done in separate configuration files. 
+     Now one should define the several RosBridges in the app properties file.
+  -simplified and updated the docker distributions
+  -resolved inconsistency in the generation of a response message following a request from a robot (ROS communication model). 
+   Instead of using the default RosBridge we use the one related to the robot.
+  -updated websocket-client to 9.4.28.v20200408
+  -added topicsLoggerService to the RosSubscribedTopics
+  -In the case where there are more than one RosBridge, we no longer avoid calling a remote service or sending a message if there are problems accessing one of the RosBrdiges.
+
+Release: 4.2.2
+  -resolved bug on GUI: visualization of production orders
+  -updated visualization of Parts on GUI
+  -updated typescript compiler to 3.8.3
+  -updated SBT to 1.3.10 and JDK to 14 (only on dev environment)
+
+Release: 4.2.1
+  -Normalized all text files (LF on end-of-line)
+  -Updated Play Framework to 2.8.1
+  -updated third-party libs: org.springframework "5.2.5.RELEASE, junit-jupiter 5.6.1  
+  -Updated third party libs: spring-kafka 2.4.5.RELEASE from 2.3.7.RELEASE
+  -Updated SBT to 1.3.9
+  -Updated data for Simoldes
+  -resolved bug - heart beep is processed, robot instance doesn't exist, an instance is created: robotTypeService.existsObject replaced by robotTypeService.existsObjectByObjectTypeId
+
+Release: 4.2.0
+  -Improved TopicsLoggerService
+  -Improved 3D visualization of some object types
+  -Improved log of MSB events and handlers on startup
+  -improved the data structure of PSA final products
+  -Updated javascript dependencies (third-party libraries)
+  -Bug: production schedule not shown properly after the reception of a new production schedule
+  -New feature: imediate execution of imported or received Production Schedules. This is enabled by setting the property "logplanner.ordermanager.processMsgProductionSchedule.execute-plan-on-creation"
+  -Updated java third party libs: springframework, spring-data-mongodb, websocket-client, com.fasterxml.jackson.core, commons-compress, spring-kafka 
+    
+Release: 4.1.1
+  -MsbConnection: Disabled 'app.addFunctions(describeFunctions())'. We are now only using the annotations in the EventHandler class. 
+  -Added <logger name="de.fhg.ipa.vfk" level="DEBUG" /> to all logback.xml files
+  -Added logger warning for identifying a situation where the contents of msgbroker.json config file doens't define the messages needed for the type of communication model that is selected
+  -Added missing state machines (task status) 
+  -Resolved bug on WorldModel: robot.objectType replaced by robot.objectId.friendlyName for workstations
+
+Release: 4.1.0        ATTENTION: This version is incompatible with versions before 4.0.0. You should clean the current data base.
+  -Created distribution for simoldes (plasmaze)
+  -Improved the logging of messages (topics in out)
+  -Created two unit tests for testing teh MSB (one-to-many and many-to-one integration flows)
+  -Consolidated the TaskStatus generated by the OrderManagerService (some notifications to the MES were missing)
+  -Updated the docker files
+  
+Release: 4.0.0    
+ATTENTION: This release is incompatible with previous versions. You should clean the current data base.
+  -Changed data base structure. This version is incompatible with previous ones: CONFIGURATION OF ANY INSTALLATION SHOULD START FROM POINT ZERO.
+  -Classes of types Kit, Conveyor, Tool, LogisticUnit, Smallbox, Largebox, Rack, ProductionLine, Workstation now correspond to a single class PhysicalObjectType
+  -Classes of instances Kit, Conveyor, Tool, LogisticUnit, Smallbox, Largebox, Rack, ProductionLine now correspond to a single class PhysicalObject
+  -For the types there is one service class: PhysicalObjectTypeService
+  -For the instances there is one base service class PhysicalObjectService that is subclassed by RackService, LargeboxService, etc
+  -Added Orion ContextBroker as alternative communication broker (implementation not finished)
+  -Resolved bug: creating physical area from the user interface  
+  -Reimplemented the method isKafkaAccessible, we now do a HTTP GET request to kafka Connect, port 8083
+  -Revised some terms on the user interface translations
+  -Adjusted data for PUCRS and UFBA (after testing both distributions)
+  
+Release: 3.13.0
+  -File app.properties is now a file not included in the distribution bundle. This file is to be used by final User for hosting his configuration.
+  -File app-default.properties contains the default values for all application properties. This should not be changed by final User.
+  -reverted back to java 12 when compiling (spring framework is on java 12)
+  
+Release: 3.12.0
+  -Updated project to Java 13
+  -Updated sbt tool (1.3.6 to 1.3.8)
+  -Updated third-party libs: spring-framework, spring-data-mongodb, websocket-client, kafka
+
+Release: 3.11.6
+  -Resolved bug: TaskModelContextSync
+  -Message ManufacturingTaskStatus is now sent also for human tasks signaling the execution of task
+
+Release: 3.11.5
+  -OrderManagerService: bug on world model synchronization
+  -resolved play framework deprecations: MsgBrokerActorSchedule, LoginService
+
+Release: 3.11.4
+  -updated third party software: playframewor4k, jcl-over-slf4j, slf4j-api, websocket-client, com.fasterxml.jackson.core, sbt
+  -improved docker distribution
+
+Release: 3.11.3
+  -Updated docker distribution so that docker containers no longer run under the account root.
+
+Release: 3.11.2
+  -Upgraded sbt from 1.3.4 to 1.3.5, updated MSB jar to the open source version
+
+Release: 3.11.1
+  -concluded 3D visualization of the all "Types of Object" (kits; racks; large boxes; small boxes; parts;  workstations production lines; final products)
+  
+Release: 3.10.3
+  -added 3D visualization of "Types of Object"
+
+Release: 3.10.2
+  -Upgraded junit4 to junit5
+  -added vertex property to Embraer SCXML drive tasks
+  -replaced ThysenScxmlContext by the general context 
+   
+Release: 3.10.1
+  -Updated the scxml mechanism that fulfills a parametrized scxml with values (a parameter is a name delimited by #, example, #partSystemId#) 
+
+Release: 3.9.12
+  -Updated several third party libs: spring, kafka, mongo, play, ...
+
+Release: 3.9.11
+  -Resolved bug: OrderManagerService, embraer use case
+
+Release: 3.9.10
+  -Resolved bug: TOPIC_NAME_APM_TASK_CONTEXT_MODEL_RESP not sent to the robot that asked it 
+  (this is only visible when we have > 1 robot with several ros masters)
+
+Release: 3.9.9
+  -Activated mechanism assignTaskListToEachProductionResource, two property variables control this mechanism: logplanner.ordermanager.assignTaskList and logplanner.ordermanager.assignTaskList.TimeoutPerTask
+
+Release: 3.9.8
+  -Added visualization of Poses on the visualization of a Part (types of Parts)
+
+Release: 3.9.7
+  -Updated SBT to 1.3.2 (do not upgrade to 1.3.3, sbt-debug doesn't work)
+  -Downgraded spring-kafka to 2.2.11.RELEASE (2.3.x gives error when registering the topics) 
+
+Release: 3.9.6
+  -Created specific distribution for PUCRS.
+  -Updated UFBA distribution. 
+
+Release: 3.9.5
+  -Implemented the TaskContectModelSync (according to the last specification with CRIIS)
+  -Updated documentation
+  -updated third-party libs: org.eclipse.jetty.websocket, om.fasterxml.jackson.core
+
+Release: 3.9.4
+  -Property PhysicalAreaProdScheduleController.order-type now can be specific to a given physical area.
+
+Release: 3.9.3
+  -created custom order for the UFBA case
+  -resolved the alignment of multiple objects in the 2D editor
+  -updated third-party libs (org.springframework spring-data-mongodb  and org.springframework.kafka 
+  -Renamed data base, it was logplanner , now it is apm-xpto where spto is the name of the distribution (e.g. apm-iilab, apm-ufba, ...)
+  IMPORTANT: if you want to keep the current data base instance (that has the name logplanner), please execute these commands on a terminal/console window:
+     mongodump -d logplanner -o dumpfolder
+     mongorestore --db apm-XPTO dumpfolder/logplanner
+  where xpto == name of your distribution
+  
+Release: 3.9.1
+  -Reposition of the breadcrumb in the user interface  
+  
+Release: 3.9.1
+  -UFBA distribution: removed the PSA conveyor messages, SopConcluded, PlatformLeavesLocation, PlatformEntersLocation
+  
+Release: 3.9.0
+  -APM no longer needs the Internet to run
+  -This version corresponds to the one demonstrated at PSA Metz 
+  
+Release: 3.8.3
+  -Improved the visualization of production schedule: no more fleekering of the screen, 
+   status of open/closed production orders is kept when we are in the same screen.
+  -Improved the improvements creation of the production schedule (assembly line): fulfilment of task goals based on the TaskContextModel or ManufacturingAreaModel, 
+   depending on the type of task: manufacturing or navigation. Not doing this for the non scalable task. Setting a task as navigation if defined by MES (must start with Drive_).
+  -Added controls to choose the background colour of the 3D visualization.
+  -Added controls to enable/disable a grid on the 3D visualization.
+
+Release: 3.8.2
+  -Replaced e.getMessage() by e.toString() on all exceptions
+
+Release: 3.8.1
+  -Improved the visualization of a production schedule
+  -Implemented the integration with PSA conveyor
+  
+Release: 3.8.0
+  -Changed WorkStation model so that the buffers (input/output) comprises several locations, one for each final product being assembled
+
+Release: 3.7.6
+  -User Interface, removed the conveyor link on Types and Implantation
+  -User Interface, improved the TaskDef screen
+  -User Interface, Alerts screen, when importing a production schedule, is there is no TaskDef related to a Task, an alert is generated.
+  -SimoldesProdScheduleGenerator: AssembleLot has now two tasks  
+
+Release: 3.7.3
+  -User Interface, Production Schedule area, improved the layout
+  -SimoldesProdScheduleGenerator: adapted the SOPs (SimoldesMoveLot1 + SimoldesMoveLot2)  
+
+Release: 3.7.2
+  -bug solved: selection of an object in the 2D editor
+  -disabled the grid in the 3D visualization
+  -adapted the PhysicalAreaProdScheduleService to receive schedules for Simoldes case  
+  
+Release: 3.7.0
+  -changed the symbol used in the 2D editor to identify an object
+  -updated the creation of custom orders for simoldes use case
+  -created new distribution: simoldes
+  -new feature on the 2D editor: selection of several objects and align on top
+  -new feature on the 2D editor: selection of several objects and connect them
+  -solved bug on execution of production schedule: on a warehouse area, sop on one robot, next sop on a separate robot
+  -added generation of taskContextModelSync on advanceTask
+  -task definitions coming from MES can be new or existing
+  -some of the lists presented by the user interface are now sorted by name, by default
+  -resolved bug on dat-gui 
+  -added new fields to production schedule coming from MES: containerType + containerName on a SOP 
+     
+Release: 3.6.2
+  -added the missing field typeOfArea on the Implantation/PhysicalAreas screen
+
+Release: 3.6.1
+  -Revised portuguese translation (puntuation, locale file wasn't UTF-8), formated the locale files.
+  Put the Physical Areas option in the first place (implantation menu)
+
+Release: 3.6.0
+  -Updated java service wrapper for linux 64 bits (3.5.34 -> 3.5.40) 
+
+Release: 3.5.0
+  -Started to manage the javascript packages throught the NPM tool
+  -Resolved all typescript compilation errors
+  -Added new tools to the 2D editor (rotation of multiple objects) 
+  
+Release: 3.4.6
+  -Updated third-party libs
+  -Visualization of robot's id in the 3D visualization now is dynamic (no more uses of images)
+  -Added a grid of 1x1 meters to the 2D editor and 3D visualization
+  -New button on the production schedule screen: to import/add custom orders into an existing production schedule 
+  -New button on the production schedule screen: to archive the current production schedule (before removing it)
+  -Added new screen on the implantation area: regions, they show all the physical areas created so far and let one change their names
+  -Tasks selected on the production schedule screen, are now sent to the server using the ProductionOrder.Id and Task.Id
+  
+Release: 3.2.0
+  -Merged APM and PM
+
+Release: 3.1.0
+  -Release used in the Embraer Pilot in Évora on 14-06-2019
+
+Release: 3.0.7
+  -Changed PickingOrder structure
+  -Updated StateMachineScxml
+
+Release: 3.0.6
+  -Fixed the graspingpose interaction
+  -Fixed the kitting order mechanism
+
+Release: 3.0.5
+  -Fixed the login mechanism
+
+Release: 3.0.4
+  -Updated the login mechanism
+
+Release: 3.0.3
+  -Updated format of Production Scheduling
+  
+Release: 3.0.2
+  -Started to distinguish warehouse areas from line assembly areas. Creation and execution of scheduling is different.
+  -Merged the properties files for kafka, mongo, msb, ros into the app-properties.properties file.
+  -Updated third party software (mongo, kafka, spring, websocket-client)
+
+Release: 2.8.14
+  Changed generation of world model: the ids of transform nodes do not change between several invocations of its generation  
+
+Release: 2.8.10
+  -Added visualization of a manufacturing area production schedule.  
+
+Release: 2.8.9
+  -MSB and ROS now can run in parallel. They are activated in the msb.properties and ros.propoerties files. 
+  A new file msgbroker.json specifies which messages are published on which broker.
+
+Release: 2.8.6
+  -Changes on the Workstation model (2D/3D)
+  -Updated the model with all teh objects defined in Del 5.2
+  -Updated the communication system (ROS and MSB)
+  -Removed mongodb-driver-async, and mongodb-driver-reactivestreams
+  -Removed reactor-core and reactor-test
+  -Upgraded Play: 2.6.15
+  -Removed PlayJson plugin and replaced by jackson framework.
+  
+Release: 2.8.5
+  -Upgraded several third-party libs:
+    Play Framework from 2.6.12 to 2.6.13
+    spring-data-mongodb from 2.0.5.RELEASE to 2.0.6.RELEASE
+    websocket-client from 9.4.9.v20180320 to 9.4.10.RC0
+    play-json from  2.6.8 to 2.6.9
+    spring-data-mongodb from 2.0.6.RELEASE to 2.0.7.RELEASE
+    mongodb-driver-async frfom 3.6.3 to 3.7.0
+    mongodb-driver-reactivestreams from 1.7.1 to 1.8.0
+    reactor-core from 3.1.6.RELEASE to 3.1.7.RELEASE
+    reactor-test" from 3.1.6.RELEASE to 3.1.7.RELEASE
+    websocket-client from 9.4.10.RC0 to 9.4.10.v20180503
+
+Release: 2.8.4
+  -Upgraded to JDK 9
+  -Upgraded several third-party libraries
+
+Release: 2.8.3
+  -Added MSB interfaces and integrated with the ROS interfaces
+  
+Release: 2.8.2
+  -Updated Play Framework to 2.6.11
+  -Updated spring-data-mongodb to 2.0.3.RELEASE
+  -Updated javax.el to 3.0.1-b09
+  -Updated springframework to 5.0.3.RELEASE
+  -Updated java-service-wrapper for 3.5.34 (linux 32 / 64 bits), windows version wan't changed (32 bit version doesn't run on 64 bit machines)
+  -Removed code that will not be used anymore: 
+    -everything related with KittingRegion (root region, container region, navigation region replaced by PhysicalArea),
+    -everything related with KittingOrder, Mission, MissionPlanner and related ROS services/topics
+    -everything related with beincpps, rabbit and atm
+  -Added the id of the PhysicalArea to most REST services so that the context is a physical area.
+  -Created objectType field on PhysicalObject and PhysicalObjectType. Deleted things like: setSpecificProperty("objectType", "Part", "string").
+  Renamed "LargeBox..." by "Largebox...". Renamed "SmallBox..." by "Smallbox...".
+  -The name "Robot" now can be one of "Robot.MobileManipulator", "Robot.FixedManipulator", "Robot.AGV"
+  -Created WorkStationType and WorkStation using ConveyorType/Conveyor as template.
+  -Optimized access to objects in a physical area (list on PhysicalArea are no longer used)
+  -On Node object: added new field "type" replacing the name
+  -On Node object: added new field "friendlyName"
+  -changed sbt file:
+     --added play-enhancer
+     --replaced ivyXML dependencies exclude statement by excludeDependencies
+     --removed old things
+     --aggregated individual settings in scala sequence settings
+     --defined assemblyMergeStrategy
+  -updated Java3D libs to 1.5.1 
+  
+Release: 2.8.1
+  -Updated sbt from 1.0.2 to 1.0.4
+  -Updated Play Framework from 2.6.6 to 2.6.9:
+     --scalaVersion updated from 2.12.3 to 2.12.4
+     --play-json from 2.6.6 to 2.6.8
+	 --sbt-plugin from 2.6.6 to 2.6.9
+     --sbt-play-enhancer from 1.1.0 to 1.2.3-SNAPSHOT (this pluging was disabled)
+     --sbteclipse-plugin from 5.1.0 to 5.2.4
+     --sbt.version from 0.13.15 1.0.4
+   -Updated springframework from 5.0.1 to 5.0.2
+   -Updated spring-data-mongodb from 2.0.1.RELEASE to 2.0.2.RELEASE
+   -Updated spring-rabbit from 2.0.0.RELEASE 2.0.1.RELEASE
+   -Updated websocket-client from 9.4.7.v20170914 to 9.4.8.v20171121"
+   -Updated commons-compress from 1.12 to 1.15
+   -Started using the MSB for APM / Scalable
+
+Release: 2.8.0
+  -Updated spring-data-mongodb from 1.10.7.RELEASE to 2.0.1.RELEASE
+  -Updated spring-rabbit from 1.7.4.RELEASE to 2.0.0.RELEASE
+  -Update Hibernate framework to 5.0.1
+
+Release: 2.7.15
+  -Updated Play Framework from 2.6.5 to 2.6.6
+  -Updated scalaVersion from 2.12.2 to 2.12.3
+  -Updated "play-json" from 2.6.5 to 2.6.6
+  
+Release: 2.7.14
+  -Updated Play Framework from 2.6.2 to 2.6.5 (includes AKKA 2.5.4)
+  -Updated Spring to 4.3.11
+  -Updated mongo-db-driver to 3.6.0-beta1
+  -Updated spring-data-mongodb from 1.10.4.RELEASE to 1.10.7.RELEASE
+  -Updated spring-rabbit from 1.7.3.RELEASE to 1.7.4.RELEASE
+  -Updated websocket-client from 9.4.6.v20170531 to 9.4.7.v20170914 
+  -Updated springframework from 4.x.x to 5.0.0    
+  
+Release: 2.7.13
+  -Updated Play Framework from 2.5.14 to 2.6.2
+  -Updated sbteclipse-plugin from 4.0.0 to 5.1.0
+  -Updated scalaVersion from 2.11.11 to 2.12.2
+  -Updated spring-data-mongodb from 1.10.3.RELEASE to 1.10.4.RELEASE
+  -Updated spring-rabbit from 1.7.2.RELEASE to 1.7.3.RELEASE
+
+Release: 2.7.12
+  -Release the day after the last Review Meeting
+
+Release: 2.7.11
+  -Updated Play Framework from 2.5.12 to 2.5.14 (Activator replaced by Sbt)
+  -Updated spring-data-mongodb from 1.10.0.RELEASE to 1.10.3.RELEASE
+  -Updated spring-rabbit from 1.7.1.RELEASE to 1.7.2.RELEASE
+
+Release: 2.7.10
+  -release created for ATM project (hannover fair)
+
+Release: 2.7.9
+  -Updated Play Framework from 2.5.10 to 2.5.12 (Activator is still 1.3.12)
+  -Updated spring-data-mongodb from 1.9.5.RELEASE to 1.10.0.RELEASE
+  -Updated spring-rabbit from 1.6.5.RELEASE to 1.7.0.RELEASE
+  -Updated the kyaia implementation (location of robotic manipulator)
+  -Created new project: atm (for hannover fair)
+
+Release: 2.7.8 (last test sprint in Rennes)
+  -Improved status messages on the user interface and added missing translations.
+  -Created new date fields to enable the record of time periods on kitting orders and missions
+  -Resolved bug: linking between a parking station and the robot.
+  
+Release: 2.7.7
+  -Created a new field: Mission.planStatus to have the status for each task.
+  -Improved ui: visualization of task status on the mission screen 
+
+Release: 2.7.6
+  -Upgraded Play framework to 2.5.10
+  -Upgraded Spring Data Mongodb to 1.9.5.RELEASE
+  -Added new distribution for kyaia (also rabbitmq interface)
+
+Release: 2.7.5
+  -Changed world model generation: the "Robot" node inside the "MobileBase" node now has the id "aau_stamina_robot"
+  -The MobileBase in the aau-labs distribution was renamed to stamina_mobile_base
+
+Release: 2.7.4
+  -Changed SERVICE_NAME_ROS_SERVER_MAP_GET_MAP to "/${robot.id}/stamina/static_map"
+  -Fixed typescript warnings
+  -Fixed minor things on the user interface 
+  -Added GetTaskPlan from TaskManager to the user interface
+  -Consolidated Status on kitting orders and missions. Consolidated corresponding string messages.
+  -Added the archival of missions in a kitting order.
+  -Removal of a kitting order also removes the related mission
+  -Bug resolved: lack of rotation in point zero (set map)
+
+Release: 2.7.3
+  -Added new feature: each robot in the fleet may have its own roscore node. A ros bridge node is launched for each roscore node. 
+   The Logplanner now supports several ros bridge nodes. 
+   A default one (defined by the ros.properties file) must exist and it is used for all robots that don't require a specific ros bridge node.
+   If a given robot (say with id xpto) requires its own roscore node and consequently one specific ros bridge node, 
+   the file ros-xpto.properties must exist (for defining that ros bridge node).
+  -Changed planKittingOrdersForCrob so that each of the robots in the fleet is used in the plan generated for a set of kitting orders.
+  -Updated Spring Framework to last version 4.3.4.RELEASE
+
+Release: 2.7.2
+  -Upgraded Play Framework from 2.5.8 to to 2.5.9 (Akka is 2.4.10)
+  -Upgraded Activator from 1.3.10 to 1.3.12
+  -Upgraded Spring Data Mongodb from 1.9.3.RELEASE to 1.9.4.RELEASE
+  -Created new ROS topic: TaskPlan
+  -Created new ROS service: ProvideTaskPlan
+  -Created new distribution: fleet-simulation
+  -Added new feature: removal of a parking station
+
+Release: 2.7.1
+  -Added new feature: archive kitting orders and filter to see all the kitting orders or just the ones that are being processed.
+  -Added new feature: rename of a robot.
+  -Added new feature: remove robot.
+  -Updated the user interface: buttons for zooming and moving 2D images.
+  -Consolidated all the 2D screens with zoom and pan buttons.
+  -Updated the distribution mechanism (docker framework, install scripts, txt files, ...)
+  
+Release: 2.7.0
+  -Changed the user interface according to the feedback returned from the Human Machine Evaluation: 
+    --Implantation / Set Objects: Create the container in the position where the click was made.
+    --Racks L Boxes & Parts: Added new option “Set name” to the popup menu when selecting rack/largebox/conveyor. When creating a rack/largebox, its name should be its type name appended by a number. 
+    --Racks L Boxes & Parts: Added new field to the interface to identify the # of parts per small box. Add new field (not editable) showing the number of cells (Parts) per large box.
+    --Set Map / Set horizontal line: Rotate the image according to the two points specified so far.
+    --Set Map: Avoided the save changes button (both for Reset and Set horizontal line actions).
+    --Small boxes: display nr parts per box
+    --Set Map: reset button
+    --Rack: nr of parts on each small box
+  -Implemented new feature: several robots, each one with its own SLAM-based image (map). 
+   One of the robots acts as Reference Robot and its map is the Reference Map. The maps of the other robots are mapped to the Reference Map.
+   The World Model generated for the user interface and Mission Planner includes all robots:
+      -root has two children -reference robot and implantation 
+      -root has one child for each robot robot - the inverted transformation that maps the robot's map into the reference robot and the robot itself.
+   The World Model generated in the scope of a Mission only has the correspondent robot:
+      -root has two children -robot and the transformation that maps the robot's map into the reference robot.
+      -this last hierarchy contains opne child - the implantation.
+  -This version changes the DB structure (on some tables).
+  -Implemented new API with MissionPlanner: MissionPlanner_TaskPlanMission & LogisticPlanner_DispatchPlan
+  -Created new user interface to allow user to create instances of robots by selecting a robot type.
+  -This version is incompatible with any previous version. 
+  -Updated spring-data-mongodb from 1.9.2.RELEASE to 1.9.3.RELEASE       
+
+Release: 2.6.17
+  -Upgraded Play Framework from 2.5.4 to to 2.5.8 (Akka updated to 2.4.9)
+  -Upgraded Spring Framework to 4.3.2.RELEASE
+  -Upgraded websocket-client from 9.3.8.v20160314 to  9.4.0.M1
+  -Upgraded org.slf4j from 1.7.19 to 1.7.21
+  -Upgraded commons-compress from 1.9 to 1.12
+  -Resolved deprecated methods: Form.form() and play.Play.application().injector()
+
+Release: 2.6.16
+  -Upgraded Play Framework from 2.5.1 to to 2.5.4
+  -Upgraded Activator from 1.3.9 to 1.3.10
+  -Upgraded Spring Framework to 4.3.0.RELEASE
+  -Upgraded spring-data-mongodb to from 1.9.1.RELEASE to 1.9.2.RELEASE"
+  -Improved user interface: header of 3D world model for a mission
+
+Release: 2.6.15 (01-06-2016)
+  -Resolved bug: generation of messages in french
+  -Association of parts to large boxes
+
+Release: 2.6.14 
+  -Increased the max. message size used in the ROS system
+  -Added the yaw parameter taken from the yaml file for the reference point (point0)
+
+Release: 2.6.13 (04-05-2016)
+  -Decreased again the the max. message size used in the ROS system
+  -Improved user interface: visualization of Map on the Set Objects 
+  
+Release: 2.6.12 (02-05-2016)
+  -Increased the max. message size used in the ROS system
+  -Improved user interface: a date is shown as a time if it corresponds to today.
+
+Release: 2.6.11 (02-05-2016)
+  -Translated to French missing terms: Mission status, Kitting Orders status
+  -Improved user interface: creation of new rack types
+  -Improved user interface: removal of users and organizations
+  -Improved user interface (kitting orders): identification of creation date and merging of status and date fields.
+  -Improved user interface (missions): identification of creation date and merging of status and date fields.
+  -Resolved bug: allow special characters in the user's forms
+  -Resolved bug: placement of an user in a different organization
+  -Resolved bug: removal of cloned objects
+  
+Release: 2.6.10 (21-04-2016)
+  -Changes made at Rennes, 3rd test sprint
+  
+Release: 2.6.9 (18-04-2016)
+  -Changed access to FAKIR (added properties to app.properties and improved log)
+  
+Release: 2.6.8 (15-04-2016)
+  -Improved user interface: screen Robot Fleet
+  
+Release: 2.6.7 (15-04-2016)
+  -Resolved bug in user interface: indication if a robot has a ParkingStation defined.
+  -Improved user interface: definition of ParkingStation is also accessible in the popup menu presented in the container region
+  (however the parking station is defined relative to the root region).
+
+Release: 2.6.6 (14-04-2016)
+  -Changed generation of MobileBase node in the world mode in order to have MobileBase->Robot->Kit
+  
+Release: 2.6.5 (13-04-2016)
+  -Update some library versions ()
+    --spring-data-mongodb from 1.8.0.RELEASE 1.9.1.RELEASE
+    --jcl-over-slf4j from 1.7.12 to 1.7.19
+    --slf4j-api from 1.7.12 to 1.7.19
+    --logback-core from 1.1.1 to 1.1.4
+    --logback-classic from 1.1.1 to 1.1.4
+
+Release: 2.6.4 (13-04-2016)
+  -The Node representing a Kit Cell now has an id equal to the kit cell.
+
+Release: 2.6.3 (11-04-2016)
+  -Created property "nrParts" of type "int" on each large box.
+
+Release: 2.6.2 (11-04-2016)
+  -Corrected the ids of small boxes in the initial data (version of logplanner of 2015)
+
+Release: 2.6.1 (08-04-2016)
+  -Simplified logs
+  
+Release: 2.6.0 (08-04-2016)
+  -Replaced skiros_task_manager by stamina_msgs in all ROS services and topics. Make sure you are using the Task Manager with the same change.
+  -DockingStation is no longer in front of a Rack. Each smallbox now has a DockingStation in front of it.
+  
+Release: 2.5.16 (07-04-2016)
+  -Improved performance: developed async versions of 
+    --WorldModelController.getCompleteWorldModel()
+    --WorldModelController.getWorldModelFor2DEditor
+    --WorldModelController.getWorldModelRobotNodesBoundingVolume
+    --WorldModelController.getRobotDataFile
+    --LogPlannerStatusController.getLogPlannerStatus
+    --RobotMapInitialTransformController.getDataFile
+  -Resolved bugs in the management of users and groups in teh user interface.
+    
+Release: 2.5.15 (06-04-2016)
+  -Changed data for CROB release (Supply Chain Conference).
+  -3D visualization is now updated each 10 secs.
+
+Release: 2.5.14 (06-04-2016)
+  -improved error messages in the user interface when ROS access fails.
+  
+Release: 2.5.13 (05-04-2016)
+  -Changed the interactivity in the user interface: 
+    --when the User presses button to call a ROS service (plan a kitting order, assign a kitting order, etc.),
+      control is returned to the user interface when the response is received from the ROS service in a timeout of 5 seconds.
+  -Resolved bugs in the user management area (user interface)
+
+Release: 2.5.12 (03-04-2016)
+  -Upgrated to last version of PlayFramework:
+    --sbt:   0.13.8 ==> 0.13.11
+    --scala: 2.11.6 ==> 2.11.7
+    --play:   2.4.6 ==> 2.5.1
+  -Upgraded websocket-client:
+    --9.3.4.RC0 ==> 9.3.8.v20160314
+  
+Release: 2.5.11
+  -Resolved potential bug: ensured that ROS ServiceResponseMessages mismatch the correspoding CallServiceMessage. 
+
+Release: 2.5.10 (01-04-2016)
+  -New functionality: creation of small boxes in the Type of objects area.
+  -Improved the Missions screen.
+  -Improved the interactivity on all buttons related to invoking a ROS service.
+  
+Release: 2.5.9 (31-03-2016)
+  -Resolved bug: calculation of point P0 after retrieving a map from ROS
+  -Improved the user interface: message after retrieving a Map from ROS
+  -Improved the user interface: we accept to populate a rack cell with small boxes not having parts
+  -Changed HTML responses so that cache is not used in the browser.  
+  -Created models for new rack and small box (CROB).  
+
+Release: 2.5.8 (30-03-2016)
+  -Improved the user interface: decreased the space on the left
+  -Resolved bug on the user interface: selection of file multiple times wasn't working (Kitting Order, Mission)
+
+Release: 2.5.7 (24-03-2016)
+  -Improved the user interface (Missions area).
+  -Improved the user interface (Runtime area).
+  -Improved the user interface: english terms, french terms, consistent buttons, consistent headers, etc.
+  
+Release: 2.5.6 (22-03-2016)
+  -Changed the update of the Robot status after receiving a world model node for the Robot:
+    --we only use the originLocation and originOrientation sent in the node.
+  -Changed the creation of a new Robot after receiving a world model node for the Robot
+    --we use the id sent in the node
+    --we also use the originLocation and originOrientation sent in the node.
+  -Improved tracing and alerts in the user interface.
+  -Improved the implantantion of small boxes in a rack.
+  
+Release: 2.5.5 (22-03-2016)
+  -Changed the implantation of racks:
+    --Creating a new smallbox, created a row of small boxes that are added to the cell within the rack.
+     This feature is controlled by a configuration variable in the app.properties file.
+    --inverselly, we can remove all the small boxes in the rack cell 
+  -Renamed "/stamina_roboot" to "/stamina-mobile_base"
+  -Corrected name of AssignMission ROS service and ProvideTaskStatus ROS topic names
+  -Added alerts to all ROS failures.
+  -Nodes for representing kit cells are generated with:
+    --an id as    CellA (CellB, etc.)
+    --a name as   CellA (CellB, etc.)
+  -Set ROS waitForServiceResponseMessageTimeout to 30 secs
+  
+Release: 2.5.4 (16-03-2016)
+  -Made sure that kits are created so that they comply with the KitConfig and have in the right cells the id of the part to be picked/placed.
+
+Release: 2.5.3 (15-03-2016)
+  -Implemented TaskStatus processing for Crob.
+  -Resolved bug: processing of TaskStatus ROS message
+  -Resolved bug: processing of Node ROS message (robot status)
+  
+Release: 2.5.2 (14-03-2016)
+  -In the logistic world model:
+    -- the node that represents the robot now has the name "MobileBase" and not anymore the name "Robot".
+    -- cells within racks and large boxes now have the names "RackCell" and "LargeBoxCell" and not anymore the name "Cell".
+    -- levels within racks and large boxes now have the names "RackLevel" and "LargeBoxLevel" and not anymore the name "Level".
+  -Implemented new functionality: support for INESC demo on the Supply Chain workshop (CrobOrders).
+  -By default the system id == the friendly name in physical objects (racks, largeboxes, conveyors, small boxes). If the friendly name is changed by the user the system id is also changed accordingly.
+  -Disabled shortcuts to delete, rotate and clone objects in the 2D world model editor.
+  
+Current release: 2.5.1 (11-03-2016)
+  -Created french translation for creating a new type of rack or large box. 
+  -Updated some terms in the user interface. 
+  -Added "MobileBase" term to the RobotStatus interactions with Task Manager. 
+
+release: 2.5.0 (10-03-2016)
+  -Consolidated version to be used in the test sprint. 
+  -Created User's Manual. 
+
+release: 2.4.35 (10-03-2016)
+  -Improved the user interface (translations, link in the top part).
+
+release: 2.4.34 (09-03-2016)
+  -Parking station now has an ID similar to the other objects in the system.
+  -Added ROS Status and Alerts to the user interface.
+  -Started to release version for third test sprint (rennes2). 
+   This LogPlanner instance only contains categories of racks, largeboxes and small boxes.
+
+release: 2.4.33 (08-03-2016)
+  -Resolved bug on processing a TaskStatus ROS message.
+  -Resolved bug on processing a Node ROS message.  
+  -Request to park a robot is refused if there is no Parking Station defined for the robot.  
+  
+release: 2.4.32 (08-03-2016)
+  -Resolved bug introduced on 2.4.29
+  -Resolved bug related with providing world model to task manager.
+  -Changed 3D visualization of conveyors.
+  -Changed button STAMINA/FAC.
+  -Changed button Get New Map.
+
+Release: 2.4.30 (07-03-2016)
+  -Improved dump of world model files (controlled by app.properties file).
+  -Activated visualization of URDF defined for the robot. Visualization is controlled by app.properties file.
+  -Improved the deletion of multiples objects in the world model.
+  -Accepted the generation of a world model for missions that do not exist. However,
+    --we do not generate nodes representing the kit to be built.
+    --we assume that the robot that will execute the mission is the first one known in the system
+
+Release: 2.4.29 (07-03-2016)
+  -Consolidation.
+
+Release: 2.4.28 (05-03-2016)
+  -Improved creation of new types of Racks.
+
+Release: 2.4.27 (04-03-2016)
+  -Added new functionality: creation of new rack types.
+  -Solved bug: communication with MissionPlanner
+
+Release: 2.4.26 (03-03-2016)
+  -Added new functionality: retrieval of Map from ROS Map Server.
+  
+Release: 2.4.25 (02-03-2016)
+  -Added mechanism to animate the robot in the 3D visualization (animation is caused by the ROS service ProvideWorldModelNode or ROS topic Node when the Node represents a robot)
+  -Added new field to Robot fleet user interface: robot is alive.
+  
+Release: 2.4.24 (29-02-2016)
+  -Created new button on Robot Fleet user interface to request the Mission Planner to plan the parking of a robot.
+  -Improvements on the english and french terms.
+  
+Release: 2.4.23 (27-02-2016)
+  -Created form to let User create new categories of large boxes.
+  -Created functionality to let CROB import a file containing a mission (CrobGoals)
+  -Created a single button (instead of two, one for selecting a file , the order for uploading) to import files into the system.
+  
+Release: 2.4.22 (25-02-2016)
+  -Created logplanner distribution for BA SYSTEMES.
+
+Release: 2.4.21 (24-02-2016)
+  -Added new functionality: import of Fac objects retrieved from a JSON file.
+
+Release: 2.4.20 (22-02-2016)
+  -Added ParkingStation element.
+
+Release: 2.4.19 (22-02-2016)
+  -Added french translation.
+
+Release: 2.4.18 (08-02-2016)
+  -Smallboxes are now created authomatically when selecting a small in a Rack.
+  -Removal of a rack removes all the contained smallboxes.
+  -Removal of a smallbox also removes it from the containing rack.
+  -Updated the 3D visualization: small boxes are have different colours: 
+    --red means that the small box is not associated a Part
+    --yellow means that the small box is associated to a Part, but doesn´t contain any Part.
+    --green means that the small box is associated to a Part and contains Parts.
+  -Resolved bug: replaced jsonNode.findPath() by jsonNode.get().
+  
+Release: 2.4.17 (06-02-2016)
+  -Started implementing new feature: selecting one or several racks/largeboxes/conveyors and requesting from the Consistency Checker the update of their location.
+  -Created property waitForServiceResponseMessageTimeout in ros.properties for specifying the timeout when calling a ROS service.
+
+Release: 2.4.16 (01-02-2016)
+  -Generated new models for large boxes (types).
+  -Added new function: import of kitting orders from FAKIR.
+  -Removed visualization of kits from the user interface.
+
+Release: 2.4.15 (27-01-2016)
+  -Renamed the ROS topics to "skiros_task_manager/...."
+
+Release: 2.4.14 (27-01-2016)
+  -Improved the user interface: tool tips.
+  -Improved the user interface: selection of multiple objects and connecting them horizontally by a fixed offset.
+  -Added validation of data when importing kitting orders.  
+  -Created ROS service: "/skiros_task_manager/ProvideWorldModelNode", "stamina_msgs/ProvideWorldModelNode"  
+  -Created ROS topic: "/skiros_task_manager/WorldModelNode", "stamina_msgs/WorldModelNode"   
+
+Release: 2.4.13 (18-01-2016)
+  -Migrated from PlayFramework 2.4.4 to 2.4.6 (there was no 2.4.5 version).
+  -Changed ROS APIs: "Skill[] plan" replaced by "String[] goals".  
+
+Release: 2.4.12 (15-01-2016)
+  -Improved the World Model 2D Editor:
+    -To select multiple objects the first object could be selected with or without pressing the Ctrl. key, for the remaining objects press the mouse's left hand button on top of the objects together with the Ctrl. key.
+       (the last object is also selected with mouse's left hand button)
+    -In order to display the popup menu press the mouse's right hand button on top of one of the selected objects
+    -Created popup menu item to align multiple objects (x and y axis) relative to the first selected
+    -Created popup menu item to align multiple objects orientation relative to the first selected
+    -Selecting multiple objects allows you to define the Large boxes and Racks sequence  
+  -Improved the performance of World Model 2D Editor.
+  
+Release: 2.4.11 (05-01-2016)
+  -Improved the World Model 2D Editor: 
+    a) Objects may be selected in order to choose an action on them. 
+       To select a single object, press the mouse's left hand button on top of the object.
+       To select multiple objects, press the mouse's left hand button on top of the objects together with the Ctrl. key.
+       Use the mouse's right hand button to select the last object.
+    b) Selecting a single object allows you to delete it, to rotate it and to clone it: use the mouse's right hand button to get access to the menu. 
+       The clone is created on top of the original object.
+    c) Selecting a single object also allows you to move it in the background image: use the arrow keys in the keyboard to move the object. 
+       Final position of teh object is committed when you click on the object. 
+    d) Selecting multiple objects allows you to delete and rotate the objects. 
+
+Release: 2.4.10 (08-12-2015)
+  -Migration to Play 2.4.4 and Activator 1.3.7.
+  -Resolved minor bugs in the 2D Editor.
+
+Release: 2.4.9
+  -Refactoring of HTML / JavaScript code (old code not being used).
+  -Improvements in the 2D editor (selection of objects). 
+
+Release: 2.4.8 (30-11-2015)
+  -Concluded (90%) work on the 2D editor and its match with the 3D visualizer.
+  -In the 2D editor, zoom and pan buttons may now be trigered by the keyboard.
+  -In the world model, the robot nodes are now placed under the root node.
+  -In the world model, the root node doesn't represent any meaningful transformation.
+  -Created interface to create a Mission Plan for CROB
+
+Release: 2.4.7
+  -Concluded the mechanism to load the URDF of the robot
+  -Started deploying the LogPLanner for CROB laboratory (separated files for co-operate and crob)
+  -Changed the way the webgl rendering is done and the update of the orbit controls
+  -Implemented mechanism for selecting objects in the 3D view. 
+  -Started using apidoc to document the REST interfaces.
+  -Reorganized the javascript files relative to 3D rendering and 2D editing.
+  -Started using the Eclipse as an environment to to process javascript files (javaassist, code formater).
+
+Release: 2.4.6 (29-October-2015)
+  -Created WmConsistencyCheckerActor to deal with the action POST worldmodel_consistencynode.
+  -Updated FacServiceTest.
+  -Corrected the modeling corresponding to Rennes.
+  -Created a new implantantion for Rennes.
+  -Corrected the 2d world model editor: 
+    --inverted the direction of pan
+    --pan/zoom levels are now maintained.
+  -Improved the user interface:
+    --visualization of part friendly name where appropriate (added partReferenceFriendlyName to smallbox's specific properties; also for largebox)
+    --corrected the sorting of racks and largeboxes on the sequence window
+  -Added the visualization of the stamina robot to the 3D visualization.
+
+Release: 2.4.5 (16-October-2015)
+  -Created HashMap to hold the authentication token created on each login, to avoid using the database each time a Controller is called and we need to authenticate the caller.
+  -Removed the ROS transactions setSkillsOnMissionPlanner and setWorldModelOnMissionPlanner
+  -Removed the robotSkillsList from the MpPlanKittingOrdersReqMessage
+  -Removed the correspoding buttons from the GUI
+  -Changed DBManagerService: drop() method == dropDatabase
+  -Added rosBridge.close() when RosBridgeActor stops.
+  -Replaced mongo by mongoClient in the access to MongoDB (MongoDB 3.X is mandatory).
+  -RosBridgeActorAccess renamed to RosBrigeActorSchedule, idem for RouterActorAccess. Both schedules are now stopped during shutdown of ApplicationStartupModule.
+  -Added "final" to injected services in all Controllers.
+  -Changed port 9001 to 9000 in the win32 distribution.
+  -Created injected constructor on RosBridgeActor and RouterActor, added start/stop logs, added termination to actors on shutdown, disabled the RouterActor schedule.
+  -Specified and implemented (75%) API to ConsistencyChecker:
+     -new field isConsistencyRegion on Node
+     -new class: ConsistencyNode
+     -new POST API: worldmodel_consistencynode
+     -disabled authentication for API: worldmodel_consistencynode and worldmodel_complete 
+  
+Release: 2.4.4 (05-October-2015)
+  -Added to the user interface:
+    --the logo of INESC TEC;
+    --the right logo of STAMINA;
+    --the version of the Logistic Planner 
+  -Updated the files that contain information about how to install, to configure and to use the LogPlanner.
+  -Replaced play.core.server.NettyServer by play.core.server.ProdServerStart on wrapper.conf  
+
+Release: 2.4.3 (05-October-2015)
+  -Removed RosBrdigeAccessModule.
+  
+Current release: 2.4.2 (05-October-2015)
+  -Changed SpringModule: now it is a real play Module, dependencies from the code are for Spring interface (and not SpringModule).
+   SpringImpl is a component inside the SpringModule. 
+  -Changed DataPopulatorModule: now it is a real play Module, dependencies from the code are for DataPopulator interface (and not DataPopulatorModule).
+
+Release: 2.4.1 (05-October-2015)
+  -Changed static objects embedded in some Controllers (detected on activator clean stage)
+
+Release: 2.4.0 (05-October-2015)
+  -Updated PlayFramework from 2.3.10 to 2.4.3:
+    -Actions are no longer static methods
+    -Controllers are injected by Google Guice (default DI on Play)
+    -Removed SpringPLugin and replaced by SpringModule
+    -Created Module for the RosBridgeControllerActor
+    -Removed the Global object, and replaced by a HttpRequestHandler and HttpErrorHandler.
+  -Improved the 2D Editor: less buttons and more mouse events.
+
+Release: 2.3.5 (30-September-2015)
+  -2D editor: added the visualization of the orientation of objects in the map.
+  -solved minor bug on the 2D editor.
+
+Release: 2.3.4 (29-September-2015)
+  -2D editor: left clicking an object allows one to relocate in the map (automatic saving).
+
+Release 2.3.3 (28-September-2015)
+  -The 2D editor now allows one to remove an object (right clicking).
+  -The 2D editor now shows the orientation of objects.
+  -The 2D editor now allows one to change the orientation of an object (right clicking).
+
+Release 2.3.2 (21-September-2015)
+  -Bug resolved on initial data (new kit config, proper background image).
+
+Release 2.3.1 (18-September-2015)
+  -Bugs resolved on implantation of objects
+  -Skills are now made part of the world model
+  -Separated the Robot.id (internal idenfier) from Robot.objectId (id used by Mission Planner and Task Manager)  
+
+Release 2.3.0 (14-September-2015)
+  -Made sure that we are using the Robot.objectId.systemId in all ROS transactions and not Robot.Id:
+    -RobotSkills.robotId == Robot.objectId.systemId 
+    -WorldModelService: the node's id of the Robot == Robot.objectId.systemId 
+    -DispatchMissionItem: robotId renamed to robotObjectId
+    -used the name robotObjectId in all places where the field refers to the objectId
+  -NavigationRegion created automatically  
+  -SKills of all robots are inserted into the World Model:
+    RootRegion -> Robot1 -> Skill1
+                         -> Skill2
+                         -> ...
+               -> Robot2 -> Skill1
+                         -> Skill2
+                         -> ...
+  -Generation of MobileBase was disabled
