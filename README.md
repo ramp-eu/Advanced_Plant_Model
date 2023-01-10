@@ -19,13 +19,15 @@ Training Material: [files](training)
 
 ## Background
   
-This repository contains the binary distribution of the APM "Advanced Plant Model", an autonomous software-based system that allows you to build a digital representation of a given manufacturing area, comprising the three-dimensional location, geometry and relationship of key physical elements present in a manufacturing area, such as production lines, workstations, logistic racks and palletes, robotic manipulators, AGVs, and other equipment.  
+This repository enables the access to the binary distribution of the APM "Advanced Plant Model", an autonomous software-based system that allows you to build a digital representation of a given manufacturing area, comprising the three-dimensional location, geometry and relationship of key physical elements present in a manufacturing area, such as production lines, workstations, logistic racks and palletes, robotic manipulators, AGVs, and other equipment.  
   
 In its most advanced configuration, the APM integrates the Production Manager (PM) element, which controls and monitors the execution of a set of manufacturing activities, scheduled by a MES Manufacturing Execution System, and assigned to the modeled robotic resources. A view of the current state of the manufacturing activities is kept by the APM.  
   
-Please note that an instance of the APM is available for each KTE in the RAMP Platform of the BetterFactory project.  If you have a strong reason to deploy a specific instance in your ICT infrastructure, you should follow the instructions below.  
+Please note that an instance of the APM is available for each KTE in the RAMP Platform of the BetterFactory project. If you have a strong reason to deploy a specific instance in your ICT infrastructure, you should follow the instructions below.  
   
 The APM is available in executable form and contains all the instructions to install and run it (no need to compile its source code).  
+
+To acess the distributable version of the APM, you have to send an email to Rui Dias (rcdias@inesctec.pt) or César Toscano (ctoscano@inesctec.pt).  
   
 ## Install
   
