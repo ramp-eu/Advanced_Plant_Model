@@ -2,7 +2,7 @@
   
 License: [Copyright © INESC TEC http://www.inesctec.pt 2014-2023. All Rights Reserved.](LICENSE)  
   
-User Manual: [pdf](training/APM-BetterFactory-D1_2-2021-Sept.pdf)  
+User Manual: [pdf](training/APM-BetterFactory-D1_8-2023-March.pdf)  
   
 Training Material: [files](training)  
   

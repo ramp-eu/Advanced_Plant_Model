@@ -1,4 +1,44 @@
-Release: 4.12.0
+Release: 4.12.5
+  -updated 3rd-party libs:
+    org.springframework 5.3.25 5.3.26
+    spring-data-mongodb 3.4.7  3.4.10
+    spring-kafka        2.9.5  2.9.7
+    mongodb-driver-core 4.8.2  4.9.1
+    org.slf4j           2.0.6  2.0.7
+    ch.qos.logback      1.4.5  1.4.6
+    commons-compress    1.22   1.23.0
+    io.opentelemetry    1.22.0 1.25.0
+    io.grpc             1.52.1 1.54.0 
+    sbt-plugin          2.9.0-M2 2.9.0-M4
+    websocket-client    9.4.50.v20221201 9.4.51.v20230217
+
+Release: 4.12.4
+  -updated the certificate for iilab dist
+  -added 'status' field to JsonConverter.productionOrder2Json (asked by PAC project)
+
+Release: 4.12.3
+  -updated 3rd-party libs:
+    org.springframework 5.3.24 5.3.25
+    spring-data-mongodb 3.4.6  3.4.7
+    spring-kafka        2.9.3  2.9.5
+    mongodb-driver-core 4.8.1  4.8.2
+    junit-jupiter"      5.9.1  5.9.2
+    io.opentelemetry    1.21.0 1.22.0
+    io.grpc             1.51.0 1.52.1
+    jackson             2.14.1 2.14.2
+  -changed all docker distributions:
+    --created apm-base-docker-image folder with script that creates and
+publishes a base docker image for all docker distributions, with name
+ctoscano/eclipse-temurin-17-jdk-focal:1.0.0
+    --changed all Dockerfile files so that the docker image are based  on
+the common docker image ctoscano/eclipse-temurin-17-jdk-focal:1.0.0
+
+Release: 4.12.2
+  -Developed the integration with BetterFactory MPMS (camunda system)
+    -created new message OSPS-MES-ManufacturingTask
+    -uses OSPS-APM-RobotProfile OSPS-APM-ManufacturingTaskStatus OSPS-APM-ManufacturingTasksDefReq OSPS-MES-ManufacturingTasksDefResp
+
+Release: 4.12.1
   -Concluded the integration with OPIL (BetterFactory project)
     --updated all msgbroker.json files and:
       ---added nameIsPattern to IdNameType
