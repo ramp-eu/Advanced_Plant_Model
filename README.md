@@ -89,7 +89,7 @@ For support please contact Rui Dias (rcdias@inesctec.pt) or César Toscano (ctos
 ## Usage
   
 Information about how to use the APM can be found in:  
-  - [User Manual](training/APM-BetterFactory-D1_2-2021-Sept.pdf)  
+  - [User Manual](training/APM-BetterFactory-D1_8-2023-March.pdf)  
   - [Training - Create Physical Area](training/01-Create-Physical-Area.pdf)  
   - [Training - Implant Objects on the Physical Area](training/02-Implant-Objects-on-the-Physical-Area.pdf)  
   - [Training - Create Physical Area with Map](training/03-Create-Physical-Area-with-Map.pdf)  
