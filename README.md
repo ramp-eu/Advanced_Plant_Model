@@ -44,10 +44,10 @@ The APM is distributed as a docker-based system, intended to be deployed on a Ub
   2.2 Open a terminal window and expand the tar.gz file.  
   2.3 Change current directory to the one just expanded.  
   2.4 Prepare docker environment (generate docker files):
-         ```docker compose pull```  
+         ```docker compose build```  
       Be patient, several downloads from the network will be done.  
   2.5 Run the APM:  
-         ```docker compose up -d --build```  
+         ```docker compose up -d```  
   2.6 Check that the APM is running:  
       (but replace the '<apm>' keyword with the name used in the docker-compose.yml file)  
          ```docker compose logs -f <apm>```  
@@ -64,7 +64,6 @@ The APM is distributed as a docker-based system, intended to be deployed on a Ub
   3.1 Open a terminal window.  
   3.2 Change current directory to the one where you have installed the APM:  
   3.3 To start running the APM:  
-         ```docker compose pull```  
          ```docker compose up -d --build```  
   3.4 To stop running the APM:  
          ```docker compose down```  
@@ -82,7 +81,6 @@ The APM is distributed as a docker-based system, intended to be deployed on a Ub
   If you need to reset the build of the APM on the docker, use the command:  
          ```docker compose build --pull --force-rm```   
   And then follow the normal process:  
-         ```docker compose pull```  
          ```docker compose build```  
          ```docker compose up -d```  
   
