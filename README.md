@@ -82,6 +82,7 @@ The APM is distributed as a docker-based system, intended to be deployed on a Ub
   If you need to reset the build of the APM on the docker, use the command:  
          ```docker compose build --pull --force-rm```   
   And then follow the normal process:  
+         ```docker compose pull```  
          ```docker compose build```  
          ```docker compose up -d```  
   
