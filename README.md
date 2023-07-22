@@ -43,14 +43,14 @@ The APM is distributed as a docker-based system, intended to be deployed on a Ub
   2.1 Copy the available 'apm-linux64-*-docker-*.tar.gz' file to your working directory.  
   2.2 Open a terminal window and expand the tar.gz file.  
   2.3 Change current directory to the one just expanded.  
-  2.4 Prepare docker environment (generate docker files):  
-         ```docker-compose build```  
+  2.4 Prepare docker environment (generate docker files):
+         ```docker compose pull```  
       Be patient, several downloads from the network will be done.  
   2.5 Run the APM:  
-         ```docker-compose up -d```  
+         ```docker compose up -d --build```  
   2.6 Check that the APM is running:  
       (but replace the '<apm>' keyword with the name used in the docker-compose.yml file)  
-         ```docker-compose logs -f <apm>```  
+         ```docker compose logs -f <apm>```  
       Search for the following two lines:  
         ```[info] - play.api.Play - Application started (Prod)```  
         ```[info] - play.core.server.NettyServer - Listening for HTTP on /0:0:0:0:0:0:0:0:9000```  
@@ -64,25 +64,26 @@ The APM is distributed as a docker-based system, intended to be deployed on a Ub
   3.1 Open a terminal window.  
   3.2 Change current directory to the one where you have installed the APM:  
   3.3 To start running the APM:  
-         ```docker-compose up -d```  
+         ```docker compose pull```  
+         ```docker compose up -d --build```  
   3.4 To stop running the APM:  
-         ```docker-compose down```  
+         ```docker compose down```  
   3.5 To see the logs of the APM:  
       (butreplace the '<apm>' keyword with the name used in the docker-compose.yml file)  
-         ```docker logs -f <apm>```  
-  3.6 Other docker-compose commands:  
-         ```docker-compose ps```  
-         ```docker-compose start```  
-         ```docker-compose stop```  
-         ```docker-compose restart```  
-         ```docker-compose pause```  
-         ```docker-compose unpause```  
+         ```docker compose logs -f <apm>```  
+  3.6 Other docker compose commands:  
+         ```docker compose ps```  
+         ```docker compose start```  
+         ```docker compose stop```  
+         ```docker compose restart```  
+         ```docker compose pause```  
+         ```docker compose unpause```  
   
   If you need to reset the build of the APM on the docker, use the command:  
-         ```docker-compose build --pull --force-rm```   
+         ```docker compose build --pull --force-rm```   
   And then follow the normal process:  
-         ```docker-compose build```  
-         ```docker-compose up -d```  
+         ```docker compose build```  
+         ```docker compose up -d```  
   
 For support please contact Rui Dias (rcdias@inesctec.pt) or César Toscano (ctoscano@inesctec.pt).  
   
