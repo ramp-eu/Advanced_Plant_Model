@@ -1,6 +1,6 @@
 # Advanced Plant Model
   
-License: [Copyright © INESC TEC http://www.inesctec.pt 2014-2023. All Rights Reserved.](LICENSE)  
+License: [Copyright © INESC TEC http://www.inesctec.pt 2014-2024. All Rights Reserved.](LICENSE)  
   
 User Manual: [pdf](training/APM-BetterFactory-D1_8-2023-March.pdf)  
   
