@@ -1,3 +1,119 @@
+Release: 4.12.12
+  -changed PhysicalAreaProdSchedule: added new attribute 'removePlannedOrders' that enables to 
+   remove the existing planned orders before inserting the new orders in the current plan
+
+Release: 4.12.11
+  -updated 3rd party software
+    --play        3.0.1   to 3.0.2
+    --sbt         1.9.8   to 1.9.9
+    --scala       2.13.12 to 2.13.13
+    --sbt-eclipse 6.0.0   to 6.2.0
+    --org.springframework 5.3.31 to 5.3.32
+    --org.slf4j           2.0.9  to 2.0.12
+    --junit-jupiter       5.10.1 to 5.10.2
+    --websocket-client    9.4.53.v20231009 to 9.4.54.v20240208
+    --commons-compress    1.25.0 to 1.26.1
+    --commons-exec        1.3    to 1.4.0
+    --opentelemetry       1.33.0 to 1.36.0
+    --grpc                1.60.0 to 1.62.2
+    --logback             1.4.14 to to 1.5.1
+
+Release: 4.12.10
+  -migrate to play framework 3.0.1:
+    --change groupId from com.typesafe.play to org.playframework
+    --change import akka.* to org.apache.pekko.*
+    --change akka. to org.apache.pekko on configuration
+    --rename package akka_actor to pekko_actor to get ride of the akka name
+  -upgrade 3rd-party software:
+    --ch.qos.logback   1.4.11 to 1.4.14
+    --commons-io       2.15.0 to 2.15.1
+    --io.opentelemetry 1.32.0 to 1.33.0
+    --io.grpc          1.59.0 to 1.60.0
+    --sbt              1.9.7  to 1.9.8
+    --sbt-digest       1.1.4  to 2.0.0
+    --sbt-assembly     2.1.1  to 2.1.5
+   -started to use JDK 21
+   -created new docker image on docker repository: ctoscano/eclipse-temurin-21-jdk-jammy
+   -changed all docker based distributions to start using eclipse-temurin-21-jdk-jammy
+  -added field on Task: expectedDuration
+
+Release: 4.12.9
+  -added the usage of SASL_PLAINTEXT on the connection to KAFKA (need by iilab)
+  -changed the docker-compose.yml files:
+    -removed property 'version'
+    -defined property 'name' with the name of the distribution
+  -Resolved the issue on MyMessageListener.convertByteArrayToString where we were expecting an Avro record with bytes. 
+  We no longer use Avro (AvroSerDeserializerService), but keep its dependency in case we need to reuse it. 
+  -ui:
+    -improved display of the robot's name
+    -created confirmation message for the elimination of the production plan
+  -created OrderManagerService.checkIfProductCanBePlacedOnFirstSopAndWorkStation
+    --to be called before orderManagerService.moveProductToFirstSopAndWorkStation to check if product can be placed 
+      on the inbound buffer of the first SOP/Workstation 
+  -changed OrderManagerService.moveProductForwardFromPreviousWorkStation
+    --added startExecutingProdSchedule, so that a new production order on the plan is launched
+  -PhysicalAreaProdScheduleController: corrected some logs
+  -PhysicalAreaProdSchedule, PhysicalAreaProdScheduleService: 
+    --new production schedules are now inserted in the middle of the current schedule, 
+      just before the first Planned Production order
+    --had to create new field sequenceNr on ProductionOrder to ensure we get the proper sequence of orders, 
+      orders are usually sorted by planneStartDate, but new orders can be inserted in the middle of the current plan
+  -added SbtPlugin("com.timushev.sbt" % "sbt-updates" % "0.6.4")
+  -upgraded 3rd party soft:
+    springframework      5.3.29 to 5.3.31
+    spring-data-mongodb  3.4.15 to 3.4.18
+    mongodb-driver-core  4.10.2 to 4.11.1
+    spring-kafka         2.9.12 to 2.9.13
+    jupiter              5.10.0 to 5.10.1
+    commons-compress     1.23.0 to 1.25.0
+    commons-io           2.13.0 to 2.15.0
+    avro                 1.11.2 to 1.11.3
+    jackson              2.15.2 to 2.15.3
+    opentelemetry        1.29.0 to 1.32.0
+    grpc                 1.58.0 to 1.59.0
+    websocket-client     9.4.52.v20230823 to 9.4.53.v20231009
+    sbt tool             1.9.4  to 1.9.7
+
+Release: 4.12.8
+  -resolved the issue of inbound and outbound buffers. Visualization on the 3D of the inbound buffer was wrong. 
+   Also, the extraction of an item from FIFO was wrong.
+
+Release: 4.12.7
+  -Added startDate/endDate to ProductionOrder
+  -updated 3rd-party libs:
+    org.springframework 5.3.26  5.3.29
+    spring-data-mongodb 3.4.10  3.4.15
+    spring-kafka        2.9.7   2.9.12
+    mongodb-driver-core 4.9.1   4.10.2
+    avro                1.11.1  1.11.2
+    org.slf4j           2.0.7   2.0.9
+    commons-io          2.11.0  2.13.0
+    websocket-client    9.4.51.v20230217  9.4.52.v20230823
+    junit-jupiter       5.9.2   5.10.0
+    opentelemetry       1.25.0  1.29.0
+    grpc                1.54.0  1.58.0
+    logback             1.4.6   1.4.8
+    logback             1.4.8   1.4.11
+    guice               5.1.0   6.0.0
+    play (sbt-plugin)   2.9.0-M4 2.9.0-M7
+    jackson             1.14.2  1.14.3
+    jackson             1.14.3  1.14.3
+    jackson             1.14.3  1.15.2
+    sbteclipse-plugin 5.2.4    sbt-eclipse 6.0.0
+    sbt-assembly        2.1.0   2.1.1
+    
+  -updated 3rd-party tools
+    sbt                 1.8.2   1.9.4
+  -set scalaVersion:    2.13.10 2.13.12
+  -resolved failures detected on the execution of a production schedule. 
+   Implemented more control on the way production orders are saved.
+  -increased sleeping time on PhysicalAreaProdScheduleControllerTest
+
+Release: 4.12.12
+  -DataPopulatorSpringImpl: populateDBFromInitialDataFile may fail, error is now being ignored
+  -Updated the GenericController and WorldModelController so that when returning the opil files, 
+   the  contentDisposition " attachment; filename=\"%s\""
+
 Release: 4.12.5
   -updated 3rd-party libs:
     org.springframework 5.3.25 5.3.26
@@ -29,9 +145,9 @@ Release: 4.12.3
   -changed all docker distributions:
     --created apm-base-docker-image folder with script that creates and
 publishes a base docker image for all docker distributions, with name
-ctoscano/eclipse-temurin-17-jdk-focal:1.0.0
+ctoscano/eclipse-temurin-21-jdk-jammy:1.0.0
     --changed all Dockerfile files so that the docker image are based  on
-the common docker image ctoscano/eclipse-temurin-17-jdk-focal:1.0.0
+the common docker image ctoscano/eclipse-temurin-21-jdk-jammy:1.0.0
 
 Release: 4.12.2
   -Developed the integration with BetterFactory MPMS (camunda system)
@@ -858,7 +974,7 @@ Release: 2.8.1
   -Updated Play Framework from 2.6.6 to 2.6.9:
      --scalaVersion updated from 2.12.3 to 2.12.4
      --play-json from 2.6.6 to 2.6.8
-	 --sbt-plugin from 2.6.6 to 2.6.9
+   --sbt-plugin from 2.6.6 to 2.6.9
      --sbt-play-enhancer from 1.1.0 to 1.2.3-SNAPSHOT (this pluging was disabled)
      --sbteclipse-plugin from 5.1.0 to 5.2.4
      --sbt.version from 0.13.15 1.0.4
